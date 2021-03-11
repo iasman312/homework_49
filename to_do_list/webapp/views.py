@@ -75,3 +75,19 @@ class TaskUpdateView(TemplateView):
         kwargs['form'] = form
         kwargs['task'] = task
         return super().get_context_data(**kwargs)
+
+
+class TaskDeleteView(TemplateView):
+    template_name = 'task_delete.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, **kwargs):
+        task = get_object_or_404(Task, id=kwargs.get('pk'))
+        task.delete()
+        return redirect('task-list')
+
+
+
