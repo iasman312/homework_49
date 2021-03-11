@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block menu %}<li><a href="{% url "task-view" task.id %}">Вернуться к
+    задаче</a></li>{% endblock menu %}
+{% block page_header %}Редактирвоать задачу {{ task.id }}{% endblock page_header %}
+
+{% block content %}
+    <form action="{% url "task-update" task.id %}" method="post">
+        {% include "task_form.html" with button_text="Редактировать задачу" %}
+    </form>
+{% endblock content %}
