@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{#{% block menu %}<li><a href="{% url "article-add" %}">Создать статью</a></li>{% endblock menu %}#}
+{% block menu %}<li><a href="{% url "task-create" %}">Создать
+    задачу</a></li>{% endblock menu %}
 
 {% block title %}Все задачи{% endblock title %}
 
@@ -11,7 +12,20 @@
         <h2>НЕТ ЗАДАЧ</h2>
     {% endif %}
 
-    {% for task in tasks %}
-        <p><a href="{% url "task-view" task.id %}">{{ task.summary }}</a></p>
-    {% endfor %}
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Задача</th>
+        </tr>
+      </thead>
+      {% for task in tasks %}
+          <tbody>
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td><a href="{% url "task-view" task.id %}">{{ task.summary }}</a></td>
+            </tr>
+          </tbody>
+      {% endfor %}
+    </table>
 {% endblock content %}

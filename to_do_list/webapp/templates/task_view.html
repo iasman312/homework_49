@@ -1,27 +1,21 @@
 {% extends "base.html" %}
 
 {% block menu %}
-{#    <li><a href="{% url "article-add" %}">Создать статью</a></li>#}
-{#    <li><a href="{% url "article-update" article.id %}">Редактировать статью</a></li>#}
-{#    <li><a href="{% url "article-delete" article.id %}">Удалить статью</a></li>#}
+    <li><a href="{% url "task-create" %}">Создать задачу</a></li>
+    <li><a href="{% url "task-update" task.id %}">Редактировать
+        задачу</a></li>
+    <li><a href="{% url "task-delete" task.id %}">Удалить задачу</a></li>
 {% endblock menu %}
 
 {% block page_header %}Задача {{ task.id }}{% endblock page_header %}
 
 {% block content %}
-    <h3>Краткое описание: {{ task.summary }}</h3>
-    <h5>Полное описание: {{ task.description }}</h5>
-    <p>Статус: {{ task.status }}</p>
-    <p>Тип: {{ task.type }}</p>
-
-
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 430px;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <h5 class="card-title">Краткое описание: {{ task.summary }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Статус: {{ task.status }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Тип: {{ task.type }}</h6>
+        <p class="card-text">Полное описание: {{ task.description }}</p>
       </div>
     </div>
 {% endblock content %}
