@@ -3,8 +3,7 @@ from django.db import models
 
 class Task(models.Model):
     summary = models.CharField(max_length=120, null=False, blank=False,
-                               verbose_name='Краткое описание',
-                               default='summary')
+                               verbose_name='Краткое описание')
     description = models.TextField(max_length=1000, null=True, blank=True,
                                    verbose_name='Полное описание')
     status = models.ForeignKey('webapp.Status', related_name='tasks',
