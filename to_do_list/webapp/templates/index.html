@@ -5,25 +5,26 @@
 
 {% block title %}Все задачи{% endblock title %}
 
-{% block page_header %}Все задачи{% endblock page_header %}
+{% block page_header %}TO-DO{% endblock page_header %}
 
 {% block content %}
     {% if not tasks %}
         <h2>НЕТ ЗАДАЧ</h2>
     {% endif %}
 
-    <table class="table table-borderless">
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Задача</th>
+          <th class="table_1" scope="col">#</th>
+          <th class="table_1" scope="col">Задача</th>
         </tr>
       </thead>
       {% for task in tasks %}
           <tbody>
             <tr>
-              <th scope="row">{{ forloop.counter }}</th>
-              <td><a href="{% url "task-view" task.id %}">{{ task.summary }}</a></td>
+              <th class="table_1" scope="row">{{ forloop.counter }}</th>
+              <td><a class="table_2" href="{% url "task-view" task.id %}"
+              >{{ task.summary }}</a></td>
             </tr>
           </tbody>
       {% endfor %}

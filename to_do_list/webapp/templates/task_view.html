@@ -10,18 +10,19 @@
 {% block page_header %}Задача {{ task.id }}{% endblock page_header %}
 
 {% block content %}
-    <div class="card" style="width: 430px;">
-      <div class="card-body">
-        <h5 class="card-title">Краткое описание: {{ task.summary }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Статус: {{ task.status }}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Types:
-            {%for type in task.types.all %}
-                {{ type.name }}
-                {% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </h6>
-        <p class="card-text">Полное описание: {{ task.description }}</p>
-      </div>
+    <div class="card text-white bg-primary mb-3 box_main" style="max-width:
+    18rem;">
+        <div class="card-header"><strong>Краткое описание: </strong>{{ task.summary }}</div>
+        <div class="card-body">
+            <h6 class="card-title"><strong>Статус: </strong>{{ task.status }}</h6>
+            <h6 class="card-title"><strong>Типы: </strong>
+                {%for type in task.types.all %}
+                    {{ type.name }}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </h6>
+            <p class="card-text"><strong>Полное описание: </strong>{{ task.description }}</p>
+        </div>
     </div>
 {% endblock content %}
 
