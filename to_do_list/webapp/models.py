@@ -8,8 +8,8 @@ class Task(models.Model):
                                    verbose_name='Полное описание')
     status = models.ForeignKey('webapp.Status', related_name='tasks',
                                on_delete=models.PROTECT, verbose_name='Статус')
-    type = models.ForeignKey('webapp.Type', related_name='tasks',
-                             on_delete=models.PROTECT, verbose_name='Тип')
+    types = models.ManyToManyField('webapp.Type', related_name='tasks',
+                                    verbose_name='Тип')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
