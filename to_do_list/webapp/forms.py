@@ -11,5 +11,6 @@ class TaskForm(forms.Form):
                                   widget=widgets.Textarea, label='Полное '
                                                                  'описание')
     status = forms.ModelChoiceField(queryset=Status.objects.all())
-    type = forms.ModelChoiceField(queryset=Type.objects.all())
+    types = forms.ModelMultipleChoiceField(queryset=Type.objects.all(),
+                                           widget=forms.CheckboxSelectMultiple)
 

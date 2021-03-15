@@ -35,12 +35,12 @@ class TaskCreateView(TemplateView):
     def post(self, request, **kwargs):
         form = TaskForm(data=request.POST)
         if form.is_valid():
+            types = form.cleaned_data.pop('types')
             task = Task.objects.create(
                 summary=form.cleaned_data.get('summary'),
                 description=form.cleaned_data.get('description'),
-                status=form.cleaned_data.get('status'),
-                type=form.cleaned_data.get('type')
-            )
+                status=form.cleaned_data.get('status'))
+            task.types.set(types)
             return redirect('task-view', pk=task.id)
         kwargs['form'] = form
         return super().get_context_data(**kwargs)
@@ -55,7 +55,7 @@ class TaskUpdateView(TemplateView):
             'summary': task.summary,
             'description': task.description,
             'status': task.status,
-            'type': task.type
+            'types': task.types.all()
         })
         kwargs['form'] = form
         kwargs['task'] = task
@@ -68,8 +68,9 @@ class TaskUpdateView(TemplateView):
             task.summary = form.cleaned_data.get('summary')
             task.description = form.cleaned_data.get('description')
             task.status = form.cleaned_data.get('status')
-            task.type = form.cleaned_data.get('type')
+            types = form.cleaned_data.pop('types')
             task.save()
+            task.types.set(types)
             return redirect('task-view', pk=task.id)
 
         kwargs['form'] = form

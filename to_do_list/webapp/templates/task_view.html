@@ -14,7 +14,12 @@
       <div class="card-body">
         <h5 class="card-title">Краткое описание: {{ task.summary }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Статус: {{ task.status }}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Тип: {{ task.type }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Types:
+            {%for type in task.types.all %}
+                {{ type.name }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </h6>
         <p class="card-text">Полное описание: {{ task.description }}</p>
       </div>
     </div>

@@ -19,7 +19,7 @@ class Task(models.Model):
         verbose_name_plural = 'Задачи'
 
     def __str__(self):
-        return f'{self.id}. {self.summary}: {self.status}, {self.type}'
+        return f'{self.id}. {self.summary}: {self.status}'
 
 
 class Status(models.Model):
