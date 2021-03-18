@@ -6,7 +6,7 @@ class Task(models.Model):
                                verbose_name='Краткое описание')
     description = models.TextField(max_length=1000, null=True, blank=True,
                                    verbose_name='Полное описание')
-    status = models.ForeignKey('webapp.Status', related_name='tasks',
+    statuses = models.ForeignKey('webapp.Status', related_name='tasks',
                                on_delete=models.PROTECT, verbose_name='Статус')
     types = models.ManyToManyField('webapp.Type', related_name='tasks',
                                      verbose_name='Тип', db_table='tasks_types')
