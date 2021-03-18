@@ -14,7 +14,8 @@
     18rem;">
         <div class="card-header"><strong>Краткое описание: </strong>{{ task.summary }}</div>
         <div class="card-body">
-            <h6 class="card-title"><strong>Статус: </strong>{{ task.status }}</h6>
+            <h6 class="card-title"><strong>Статус: </strong>
+                {{ task.statuses }}</h6>
             <h6 class="card-title"><strong>Типы: </strong>
                 {%for type in task.types.all %}
                     {{ type.name }}
