@@ -1,18 +1,21 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
+from webapp.validators import MinLengthValidator, prohibited_word
 
 
 class Task(models.Model):
     summary = models.CharField(max_length=120, null=False, blank=False,
                                verbose_name='Краткое описание',
-                               validators=[MinLengthValidator(5)])
+                               validators=[MinLengthValidator(5),
+                                           prohibited_word])
     description = models.TextField(max_length=1000, null=True, blank=True,
                                    verbose_name='Полное описание',
-                                   validators=[MinLengthValidator(20)])
+                                   validators=[MinLengthValidator(20),
+                                               prohibited_word])
     statuses = models.ForeignKey('webapp.Status', related_name='tasks',
-                               on_delete=models.PROTECT, verbose_name='Статус')
+                                  on_delete=models.PROTECT,
+                                 verbose_name='Статус')
     types = models.ManyToManyField('webapp.Type', related_name='tasks',
-                                     verbose_name='Тип', db_table='tasks_types')
+                                    verbose_name='Тип', db_table='tasks_types')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

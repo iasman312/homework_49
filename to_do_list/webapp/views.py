@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, RedirectView
+from django.views.generic import TemplateView, RedirectView, FormView
+from django.urls import reverse
 
 from webapp.forms import TaskForm
 from webapp.models import Task
@@ -25,57 +26,46 @@ class TaskView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TaskCreateView(TemplateView):
+class TaskCreateView(FormView):
     template_name = 'task_create.html'
+    form_class = TaskForm
 
-    def get_context_data(self, **kwargs):
-        kwargs['form'] = TaskForm()
-        return super().get_context_data(**kwargs)
+    def form_valid(self, form):
+        self.task = form.save()
+        return super().form_valid(form)
 
-    def post(self, request, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            types = form.cleaned_data.pop('types')
-            task = Task.objects.create(
-                summary=form.cleaned_data.get('summary'),
-                description=form.cleaned_data.get('description'),
-                status=form.cleaned_data.get('status'))
-            task.types.set(types)
-            return redirect('task-view', pk=task.id)
-        kwargs['form'] = form
-        return super().get_context_data(**kwargs)
+    def get_success_url(self):
+        return reverse('task-view', kwargs={'pk': self.task.pk})
 
 
-class TaskUpdateView(TemplateView):
+class TaskUpdateView(FormView):
     template_name = 'task_update.html'
+    form_class = TaskForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.task = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        task = get_object_or_404(Task, id=kwargs.get('pk'))
-        form = TaskForm(initial={
-            'summary': task.summary,
-            'description': task.description,
-            'status': task.status,
-            'types': task.types.all()
-        })
-        kwargs['form'] = form
-        kwargs['task'] = task
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['task'] = self.task
+        return context
 
-    def post(self, request, **kwargs):
-        task = get_object_or_404(Task, id=kwargs.get('pk'))
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            task.summary = form.cleaned_data.get('summary')
-            task.description = form.cleaned_data.get('description')
-            task.status = form.cleaned_data.get('status')
-            types = form.cleaned_data.pop('types')
-            task.save()
-            task.types.set(types)
-            return redirect('task-view', pk=task.id)
+    def get_from_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.task
+        return kwargs
 
-        kwargs['form'] = form
-        kwargs['task'] = task
-        return super().get_context_data(**kwargs)
+    def form_valid(self, form):
+        self.task = form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('task-view', kwargs={'pk': self.task.pk})
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Task, pk=pk)
 
 
 class TaskDeleteView(TemplateView):
