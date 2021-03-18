@@ -1,11 +1,14 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 
 class Task(models.Model):
     summary = models.CharField(max_length=120, null=False, blank=False,
-                               verbose_name='Краткое описание')
+                               verbose_name='Краткое описание',
+                               validators=[MinLengthValidator(5)])
     description = models.TextField(max_length=1000, null=True, blank=True,
-                                   verbose_name='Полное описание')
+                                   verbose_name='Полное описание',
+                                   validators=[MinLengthValidator(20)])
     statuses = models.ForeignKey('webapp.Status', related_name='tasks',
                                on_delete=models.PROTECT, verbose_name='Статус')
     types = models.ManyToManyField('webapp.Type', related_name='tasks',
