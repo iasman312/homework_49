@@ -47,3 +47,11 @@ body {
 label {
     color: white;
 }
+
+.container .bg-primary{
+    background-color: #4d88ff!important;
+}
+
+.container .table{
+    width: 30%;
+}
