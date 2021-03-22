@@ -1,0 +1,24 @@
+1)
+from datetime import datetime, timedelta
+Task.objects.filter(statuses__name='Done', updated_at__range=(datetime.now()-timedelta(days=30), datetime.now()))
+
+2)
+Task.objects.filter(statuses__name__in=('Done','New'), types__name__in=('Enhancement','Task'))
+
+3)
+from django.db.models import Q
+Task.objects.filter(Q(summary__icontains='bug') | Q(types__name='Bug')).exclude(statuses__name='Done')
+
+
+4)
+Task.objects.all().values('id', 'summary', 'types', 'statuses')
+
+5)
+from django.db.models import F
+Task.objects.filter(summary=F('description'))
+
+6)
+for i in Type.objects.all():
+    i.name
+    i.tasks.count()
+
