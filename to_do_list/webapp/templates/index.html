@@ -10,6 +10,8 @@
 {% block content %}
     {% if not tasks %}
         <h2>НЕТ ЗАДАЧ</h2>
+    {% else %}
+        {% include 'partial/simple_search.html' %}
     {% endif %}
 
     <table class="table table-striped">
