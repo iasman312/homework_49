@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, RedirectView, FormView
+from django.views.generic import TemplateView, RedirectView, FormView, ListView
 from django.urls import reverse
 
 from webapp.forms import TaskForm
@@ -10,12 +10,14 @@ class TaskRedirectView(RedirectView):
     pattern_name = 'task-view'
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
+    context_object_name = 'tasks'
+    paginate_by = 5
+    paginate_orphans = 1
 
-    def get_context_data(self, **kwargs):
-        kwargs['tasks'] = Task.objects.all()
-        return super().get_context_data(**kwargs)
+    def get_queryset(self):
+        return Task.objects.all().order_by('-created_at')
 
 
 class TaskView(TemplateView):
