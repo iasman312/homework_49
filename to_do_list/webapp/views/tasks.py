@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, RedirectView, FormView, \
-    ListView, DetailView, CreateView
+from django.views.generic import TemplateView, FormView, \
+    ListView, CreateView
 from django.urls import reverse
 from django.db.models import Q
 from django.utils.http import urlencode

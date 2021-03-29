@@ -1,12 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, RedirectView, FormView, \
-    ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse
-from django.db.models import Q
-from django.utils.http import urlencode
 
-from webapp.forms import TaskForm, SimpleSearchForm, ProjectForm
-from webapp.models import Task, Project
+from webapp.forms import ProjectForm
+from webapp.models import Project
 
 
 class IndexView(ListView):
