@@ -1,43 +1,36 @@
 [
 {
-  "model": "webapp.task",
+  "model": "webapp.project",
   "pk": 1,
   "fields": {
-    "summary": "Читать книги",
-    "description": "Читать книги по 50 страниц в день.",
-    "statuses": 1,
-    "created_at": "2021-03-18T07:38:37.226Z",
-    "updated_at": "2021-03-18T07:38:37.226Z",
-    "types": [
-      1
-    ]
+    "start_date": "2021-03-29",
+    "finish_date": "2021-04-29",
+    "title": "Проект 1",
+    "description": "Хороший проект"
   }
 },
 {
-  "model": "webapp.task",
+  "model": "webapp.project",
   "pk": 2,
   "fields": {
-    "summary": "Бегать по утрам",
-    "description": "Каждый день по 10 км.",
-    "statuses": 2,
-    "created_at": "2021-03-18T07:39:12.448Z",
-    "updated_at": "2021-03-18T07:39:12.449Z",
-    "types": [
-      1
-    ]
+    "start_date": "2021-04-20",
+    "finish_date": "2021-05-20",
+    "title": "Проект 2",
+    "description": "Нормальный проект"
   }
 },
 {
   "model": "webapp.task",
   "pk": 3,
   "fields": {
-    "summary": "Пить воду",
-    "description": "Пить воду по 2,5 литра в день.",
-    "statuses": 2,
-    "created_at": "2021-03-18T07:39:56.781Z",
-    "updated_at": "2021-03-18T07:39:56.781Z",
+    "summary": "Читать книги",
+    "description": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "statuses": 1,
+    "project": 2,
+    "created_at": "2021-03-29T08:49:02.196Z",
+    "updated_at": "2021-03-29T08:49:02.196Z",
     "types": [
-      3
+      1
     ]
   }
 },
@@ -45,55 +38,13 @@
   "model": "webapp.task",
   "pk": 4,
   "fields": {
-    "summary": "Изучать немецкий",
-    "description": "Через день.",
+    "summary": "fasgggggggggggggg",
+    "description": "saggggggggggggggggggggggggggged",
     "statuses": 3,
-    "created_at": "2021-03-18T07:40:12.971Z",
-    "updated_at": "2021-03-18T07:40:12.972Z",
+    "project": 2,
+    "created_at": "2021-03-29T08:55:41.869Z",
+    "updated_at": "2021-03-29T08:55:41.869Z",
     "types": [
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 5,
-  "fields": {
-    "summary": "Ходить на плавание",
-    "description": "Не получилось",
-    "statuses": 3,
-    "created_at": "2021-03-18T07:40:44.020Z",
-    "updated_at": "2021-03-18T07:40:44.020Z",
-    "types": [
-      2
-    ]
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 6,
-  "fields": {
-    "summary": "bug Gnjkdnsjg",
-    "description": "fafasfagagsgafasfasagaa",
-    "statuses": 1,
-    "created_at": "2021-03-22T08:08:24.016Z",
-    "updated_at": "2021-03-22T08:08:24.016Z",
-    "types": [
-      2
-    ]
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 7,
-  "fields": {
-    "summary": "Привет, привет, привет, привет",
-    "description": "Привет, привет, привет, привет",
-    "statuses": 2,
-    "created_at": "2021-03-22T08:09:06.766Z",
-    "updated_at": "2021-03-22T08:09:06.766Z",
-    "types": [
-      2,
       3
     ]
   }
@@ -145,7 +96,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$VcBvXOcvnbAC$kjQwzOPVsXcQjqJwq3YrflbrHgdn7KG4C2wjI4STu28=",
-    "last_login": "2021-03-18T07:31:50.669Z",
+    "last_login": "2021-03-29T10:54:15.778Z",
     "is_superuser": true,
     "username": "asman",
     "first_name": "",
