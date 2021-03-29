@@ -3,11 +3,13 @@ body {
 }
 
 .body {
-    background: #6a7dff;
+    background-image: url("../images/42.jpg");
+    background-repeat: no-repeat, repeat;
+    background-color: #cccccc;
 }
 
 .container {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -24,38 +26,36 @@ body {
 
 .page_header {
     text-align: center;
-    color: white;
+    color: #6a7ddd;
+    font-family: Georgia, arial, serif;
+    font-style: italic;
 }
 
-.table_1 {
-    color: white;
-}
-
-.table_2 {
-    text-decoration: none;
-    color: white;
-}
-
-.box_main {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-    margin-top: 30px;
-}
-
-label {
-    color: white;
-}
-
-.container .bg-primary{
-    background-color: #4d88ff!important;
-}
-
-.container .table{
+.project-card {
+    margin: 0 auto;
     width: 30%;
+    padding: 50px;
 }
 
+.project_text {
+    padding: 5px;
+}
+
+.project_num {
+    background-color: #48D1CC;
+    padding: 5px 10px;
+    border-radius: 25px;
+    color: #595959;
+}
+
+.project_title {
+    text-decoration: none;
+    color: #595959;
+    background-color: #ffbf80;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
 
 .pagination {
     text-align: center;

@@ -2,26 +2,19 @@
 
 {% block title %}Все проекты{% endblock title %}
 
-{% block page_header %}TO-DO{% endblock page_header %}
+{% block page_header %}To-Do List{% endblock page_header %}
 
 {% block content %}
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="table_1" scope="col">#</th>
-          <th class="table_1" scope="col">Проект</th>
-        </tr>
-      </thead>
-      {% for project in projects %}
-          <tbody>
-            <tr>
-              <th class="table_1" scope="row">{{ forloop.counter }}</th>
-              <td><a class="table_2" href="{% url "project-view" project.id %}"
-              >{{ project.title }}</a></td>
-            </tr>
-          </tbody>
-      {% endfor %}
-    </table>
-    <a href="{% url "project-create" %}">Создать проект</a>
+    <div class="project-card">
+        {% for project in projects %}
+            <p>
+                <span class="project_num"
+            >{{ forloop.counter }}</span>
+            <a class="project_title" href="{% url "project-view" project.id %}"
+            >{{ project.title }}</a><br>
+            </p>
+        {% endfor %}
+        <a class="btn btn-primary" href="{% url "project-create" %}" role="button">Создать проект</a>
+    </div>
     {% include 'partial/pagination.html' %}
 {% endblock content %}
