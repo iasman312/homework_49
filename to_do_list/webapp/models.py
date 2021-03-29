@@ -2,6 +2,22 @@ from django.db import models
 from webapp.validators import MinLengthValidator, prohibited_word
 
 
+class Project(models.Model):
+    start_date = models.DateField(null=False, blank=False,
+                                  verbose_name='Дата начала')
+    finish_date = models.DateField(null=True, blank=True,
+                                   verbose_name='Дата окончания')
+    title = models.CharField(max_length=120, null=False, blank=False,
+                             verbose_name='Название')
+    description = models.TextField(max_length=3000, null=True, blank=True,
+                                   verbose_name='Описание')
+
+    class Meta:
+        db_table = 'projects'
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
+
+
 class Task(models.Model):
     summary = models.CharField(max_length=120, null=False, blank=False,
                                verbose_name='Краткое описание',
@@ -12,10 +28,13 @@ class Task(models.Model):
                                    validators=[MinLengthValidator(20),
                                                prohibited_word])
     statuses = models.ForeignKey('webapp.Status', related_name='tasks',
-                                  on_delete=models.PROTECT,
+                                 on_delete=models.PROTECT,
                                  verbose_name='Статус')
     types = models.ManyToManyField('webapp.Type', related_name='tasks',
                                     verbose_name='Тип', db_table='tasks_types')
+    project = models.ForeignKey('webapp.Project', related_name='tasks',
+                                on_delete=models.CASCADE, null=False,
+                                blank=False, verbose_name='Проект', default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
