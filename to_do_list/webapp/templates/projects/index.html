@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{#{% block menu %}<li><a href="{% url "task-create" %}">Создать#}
+{#    задачу</a></li>{% endblock menu %}#}
+
+{% block title %}Все проекты{% endblock title %}
+
+{% block page_header %}TO-DO{% endblock page_header %}
+
+{% block content %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="table_1" scope="col">#</th>
+          <th class="table_1" scope="col">Проект</th>
+        </tr>
+      </thead>
+      {% for project in projects %}
+          <tbody>
+            <tr>
+              <th class="table_1" scope="row">{{ forloop.counter }}</th>
+              <td><a class="table_2" href="{% url "project-view" project.id %}"
+              >{{ project.title }}</a></td>
+            </tr>
+          </tbody>
+      {% endfor %}
+    </table>
+    {% include 'partial/pagination.html' %}
+{% endblock content %}

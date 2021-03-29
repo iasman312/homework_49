@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Задачи для профиков{% endblock title %}</title>
+    <title>{% block title %}Проекты для профиков{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link rel="stylesheet" href="{% static "css/navbar.css" %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 <body class="body">
     <nav class="navbar">
         <ul class="menu">
-            <li><a href="{% url "task-list" %}">Все задачи</a></li>
+            <li><a href="{% url "project-list" %}">Все проекты</a></li>
             {% block menu %}{% endblock %}
         </ul>
     </nav>

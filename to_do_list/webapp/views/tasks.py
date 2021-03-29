@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, RedirectView, FormView, ListView
+from django.views.generic import TemplateView, RedirectView, FormView, \
+    ListView, DetailView
 from django.urls import reverse
 from django.db.models import Q
 from django.utils.http import urlencode
@@ -8,11 +9,7 @@ from webapp.forms import TaskForm, SimpleSearchForm
 from webapp.models import Task
 
 
-class TaskRedirectView(RedirectView):
-    pattern_name = 'task-view'
-
-
-class IndexView(ListView):
+class TasksView(ListView):
     template_name = 'index.html'
     context_object_name = 'tasks'
     model = Task
@@ -50,7 +47,7 @@ class IndexView(ListView):
 
 
 class TaskView(TemplateView):
-    template_name = 'task_view.html'
+    template_name = 'view.html'
 
     def get_context_data(self, **kwargs):
         kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
@@ -58,7 +55,7 @@ class TaskView(TemplateView):
 
 
 class TaskCreateView(FormView):
-    template_name = 'task_create.html'
+    template_name = 'create.html'
     form_class = TaskForm
 
     def form_valid(self, form):
@@ -70,7 +67,7 @@ class TaskCreateView(FormView):
 
 
 class TaskUpdateView(FormView):
-    template_name = 'task_update.html'
+    template_name = 'update.html'
     form_class = TaskForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -100,7 +97,7 @@ class TaskUpdateView(FormView):
 
 
 class TaskDeleteView(TemplateView):
-    template_name = 'task_delete.html'
+    template_name = 'delete.html'
 
     def get_context_data(self, **kwargs):
         kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
@@ -110,6 +107,3 @@ class TaskDeleteView(TemplateView):
         task = get_object_or_404(Task, id=kwargs.get('pk'))
         task.delete()
         return redirect('task-list')
-
-
-
