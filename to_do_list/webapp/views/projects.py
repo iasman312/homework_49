@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, RedirectView, FormView, \
-    ListView, DetailView
+    ListView, DetailView, CreateView
 from django.urls import reverse
 from django.db.models import Q
 from django.utils.http import urlencode
 
-from webapp.forms import TaskForm, SimpleSearchForm
+from webapp.forms import TaskForm, SimpleSearchForm, ProjectForm
 from webapp.models import Task, Project
 
 
@@ -20,3 +20,12 @@ class IndexView(ListView):
 class ProjectView(DetailView):
     template_name = 'projects/view.html'
     model = Project
+
+
+class ProjectCreateView(CreateView):
+    template_name = 'projects/create.html'
+    model = Project
+    form_class = ProjectForm
+
+    def get_success_url(self):
+        return reverse('project-view', kwargs={'pk': self.object.pk})

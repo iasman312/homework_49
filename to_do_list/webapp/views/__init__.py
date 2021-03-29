@@ -1,1 +1,1 @@
-from webapp.views.projects import IndexView, ProjectView
+from webapp.views.projects import IndexView, ProjectView, ProjectCreateView
