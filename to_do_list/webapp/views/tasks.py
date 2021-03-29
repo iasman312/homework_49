@@ -47,7 +47,7 @@ class TasksView(ListView):
 
 
 class TaskView(TemplateView):
-    template_name = 'view.html'
+    template_name = 'tasks/view.html'
 
     def get_context_data(self, **kwargs):
         kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
@@ -72,7 +72,7 @@ class TaskCreateView(CreateView):
 
 
 class TaskUpdateView(FormView):
-    template_name = 'update.html'
+    template_name = 'tasks/update.html'
     form_class = TaskForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -84,9 +84,10 @@ class TaskUpdateView(FormView):
         context['task'] = self.task
         return context
 
-    def get_from_kwargs(self):
+    def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['instance'] = self.task
+        print(self.task, 'wewew')
         return kwargs
 
     def form_valid(self, form):
@@ -102,7 +103,7 @@ class TaskUpdateView(FormView):
 
 
 class TaskDeleteView(TemplateView):
-    template_name = 'delete.html'
+    template_name = 'tasks/delete.html'
 
     def get_context_data(self, **kwargs):
         kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
@@ -111,4 +112,4 @@ class TaskDeleteView(TemplateView):
     def post(self, request, **kwargs):
         task = get_object_or_404(Task, id=kwargs.get('pk'))
         task.delete()
-        return redirect('task-list')
+        return redirect('project-view', pk=self.kwargs.get('pk'))

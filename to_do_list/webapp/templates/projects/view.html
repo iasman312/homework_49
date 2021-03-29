@@ -6,6 +6,13 @@
     <p>Start Date: {{ project.start_date }}</p>
     <p>Finish Date: {{ project.finish_date }}</p>
 
+    <h2>Задачи</h2>
+    {% for task in project.tasks.all %}
+        <p><a href="{% url "task-view" task.pk %}">{{ task.summary }}</a></p>
+    {% empty %}
+        <p>Нет задач :(</p>
+    {% endfor %}
+
     <a href="{% url "task-create" project.pk %}">Добавить задачу</a>
 
 {% endblock content %}
