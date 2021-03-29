@@ -20,6 +20,7 @@ class IndexView(ListView):
 class ProjectView(DetailView):
     template_name = 'projects/view.html'
     model = Project
+    context_object_name = "project"
 
 
 class ProjectCreateView(CreateView):
