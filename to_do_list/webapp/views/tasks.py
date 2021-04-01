@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, FormView, \
-    ListView, CreateView
-from django.urls import reverse
+    ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -71,45 +71,20 @@ class TaskCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(FormView):
+class TaskUpdateView(UpdateView):
+    model = Task
     template_name = 'tasks/update.html'
     form_class = TaskForm
-
-    def dispatch(self, request, *args, **kwargs):
-        self.task = self.get_object()
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['task'] = self.task
-        return context
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['instance'] = self.task
-        print(self.task, 'wewew')
-        return kwargs
-
-    def form_valid(self, form):
-        self.task = form.save()
-        return super().form_valid(form)
+    context_object_name = 'task'
 
     def get_success_url(self):
-        return reverse('task-view', kwargs={'pk': self.task.pk})
-
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(Task, pk=pk)
+        return reverse('project-view', kwargs={'pk': self.object.project.pk})
 
 
-class TaskDeleteView(TemplateView):
+class TaskDeleteView(DeleteView):
     template_name = 'tasks/delete.html'
+    model = Task
+    context_object_name = 'task'
 
-    def get_context_data(self, **kwargs):
-        kwargs['task'] = get_object_or_404(Task, id=kwargs.get('pk'))
-        return super().get_context_data(**kwargs)
-
-    def post(self, request, **kwargs):
-        task = get_object_or_404(Task, id=kwargs.get('pk'))
-        task.delete()
-        return redirect('project-view', pk=self.kwargs.get('pk'))
+    def get_success_url(self):
+        return reverse('project-view', kwargs={'pk': self.object.project.pk})
