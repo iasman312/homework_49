@@ -31,10 +31,11 @@ body {
     font-style: italic;
 }
 
-.project-card {
+.project-cards {
     margin: 0 auto;
-    width: 30%;
+    /*width: 30%;*/
     padding: 50px;
+    text-align: center;
 }
 
 .project_text {

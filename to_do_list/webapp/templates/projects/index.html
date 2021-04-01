@@ -5,14 +5,16 @@
 {% block page_header %}To-Do List{% endblock page_header %}
 
 {% block content %}
-    <div class="project-card">
+    <div class="project-cards">
         {% for project in projects %}
+            <div class="project-card">
             <p>
                 <span class="project_num"
             >{{ forloop.counter }}</span>
             <a class="project_title" href="{% url "project-view" project.id %}"
             >{{ project.title }}</a><br>
             </p>
+            </div>
         {% endfor %}
         <a class="btn btn-primary" href="{% url "project-create" %}" role="button">Создать проект</a>
     </div>

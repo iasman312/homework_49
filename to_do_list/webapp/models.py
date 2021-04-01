@@ -11,6 +11,7 @@ class Project(models.Model):
                              verbose_name='Название')
     description = models.TextField(max_length=3000, null=True, blank=True,
                                    verbose_name='Описание')
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'projects'

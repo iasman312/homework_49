@@ -13,6 +13,9 @@
         <p>Нет задач :(</p>
     {% endfor %}
 
-    <a href="{% url "task-create" project.pk %}">Добавить задачу</a>
+    <p><a href="{% url "task-create" project.pk %}">Добавить задачу</a></p>
+    <p><a href="{% url "project-delete" project.pk %}">Удалить проект</a></p>
+    <p><a href="{% url "project-update" project.pk %}">Редактировать
+        проект</a></p>
 
 {% endblock content %}

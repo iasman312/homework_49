@@ -6,7 +6,8 @@
     "start_date": "2021-03-29",
     "finish_date": "2021-04-29",
     "title": "Проект 1",
-    "description": "Хороший проект"
+    "description": "Отличный проект",
+    "is_deleted": false
   }
 },
 {
@@ -16,7 +17,8 @@
     "start_date": "2021-04-20",
     "finish_date": "2021-05-20",
     "title": "Проект 2",
-    "description": "Нормальный проект"
+    "description": "Нормальный проект",
+    "is_deleted": false
   }
 },
 {
@@ -24,28 +26,13 @@
   "pk": 3,
   "fields": {
     "summary": "Читать книги",
-    "description": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "description": "ИИИИИИИИИИИИИИИИИИИИИfaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "statuses": 1,
     "project": 2,
     "created_at": "2021-03-29T08:49:02.196Z",
-    "updated_at": "2021-03-29T08:49:02.196Z",
+    "updated_at": "2021-04-01T09:42:28.045Z",
     "types": [
       1
-    ]
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 4,
-  "fields": {
-    "summary": "fasgggggggggggggg",
-    "description": "saggggggggggggggggggggggggggged",
-    "statuses": 3,
-    "project": 2,
-    "created_at": "2021-03-29T08:55:41.869Z",
-    "updated_at": "2021-03-29T08:55:41.869Z",
-    "types": [
-      3
     ]
   }
 },
