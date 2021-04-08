@@ -38,6 +38,7 @@ body {
     text-align: center;
 }
 
+
 .project_text {
     padding: 5px;
 }
@@ -97,4 +98,13 @@ body {
     border-radius: 5px;
     text-align: center;
     border: solid 1px gray;
+}
+
+
+.menu-right {
+    float: right;
+}
+
+.menu {
+    display: block;
 }
