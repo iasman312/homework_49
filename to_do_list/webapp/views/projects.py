@@ -5,6 +5,7 @@ from django.http import Http404
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(ListView):
@@ -32,7 +33,7 @@ class ProjectView(DetailView):
         return self.render_to_response(context)
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     template_name = 'projects/create.html'
     model = Project
     form_class = ProjectForm
@@ -41,7 +42,7 @@ class ProjectCreateView(CreateView):
         return reverse('project-view', kwargs={'pk': self.object.pk})
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/update.html'
     form_class = ProjectForm
@@ -51,7 +52,7 @@ class ProjectUpdateView(UpdateView):
         return reverse('project-view', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'projects/delete.html'
     model = Project
     context_object_name = 'project'

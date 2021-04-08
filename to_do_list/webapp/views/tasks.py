@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, FormView, \
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.utils.http import urlencode
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from webapp.forms import TaskForm, SimpleSearchForm
 from webapp.models import Task, Project
@@ -54,7 +55,7 @@ class TaskView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/create.html'
     form_class = TaskForm
     model = Task
@@ -71,7 +72,7 @@ class TaskCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks/update.html'
     form_class = TaskForm
@@ -81,7 +82,7 @@ class TaskUpdateView(UpdateView):
         return reverse('project-view', kwargs={'pk': self.object.project.pk})
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'tasks/delete.html'
     model = Task
     context_object_name = 'task'
