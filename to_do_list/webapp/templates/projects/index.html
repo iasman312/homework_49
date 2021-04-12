@@ -11,12 +11,14 @@
             <p>
                 <span class="project_num"
             >{{ forloop.counter }}</span>
-            <a class="project_title" href="{% url "project-view" project.id %}"
+            <a class="project_title" href="
+{% url "webapp:project-view" project.id %}"
             >{{ project.title }}</a><br>
             </p>
             </div>
         {% endfor %}
-        <a class="btn btn-primary" href="{% url "project-create" %}" role="button">Создать проект</a>
+        <a class="btn btn-primary" href="{% url "webapp:project-create" %}"
+           role="button">Создать проект</a>
     </div>
     {% include 'partial/pagination.html' %}
 {% endblock content %}

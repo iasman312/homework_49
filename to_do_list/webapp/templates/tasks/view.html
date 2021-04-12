@@ -1,12 +1,5 @@
 {% extends "base.html" %}
 
-{#{% block menu %}#}
-{#    <li><a href="{% url "task-create" %}">Создать задачу</a></li>#}
-{#    <li><a href="{% url "task-update" task.id %}">Редактировать#}
-{#        задачу</a></li>#}
-{#    <li><a href="{% url "task-delete" task.id %}">Удалить задачу</a></li>#}
-{#{% endblock menu %}#}
-
 {% block page_header %}Задача {{ task.id }}{% endblock page_header %}
 
 {% block content %}
@@ -23,8 +16,9 @@
                 {% endfor %}
             </h6>
             <p class="card-text"><strong>Полное описание: </strong>{{ task.description }}</p>
-            <a href="{% url "task-delete" task.pk %}">Удалить задачу</a>
-            <a href="{% url "task-update" task.pk %}">Редактировать задачу</a>
+            <a href="{% url "webapp:task-delete" task.pk %}">Удалить задачу</a>
+            <a href="{% url "webapp:task-update" task.pk %}">Редактировать
+                задачу</a>
         </div>
     </div>
 {% endblock content %}

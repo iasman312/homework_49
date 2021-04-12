@@ -3,7 +3,7 @@
 {% block page_header %}Создать проект{% endblock page_header %}
 
 {% block content %}
-    <form action="{% url "project-create" %}" method="post">
+    <form action="{% url "webapp:project-create" %}" method="post">
         {% include "partial/form.html" with button_text="Создать проект" %}
     </form>
 {% endblock content %}

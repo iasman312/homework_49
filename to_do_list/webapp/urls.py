@@ -12,6 +12,8 @@ from webapp.views import (
     ProjectDeleteView
 )
 
+app_name = 'webapp'
+
 urlpatterns = [
     path('', IndexView.as_view(), name='project-list'),
     path('<int:pk>/', ProjectView.as_view(), name='project-view'),

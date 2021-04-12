@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block menu %}<li><a href="{% url "task-create" %}">Создать
+{% block menu %}<li><a href="{% url "webapp:task-create" %}">Создать
     задачу</a></li>{% endblock menu %}
 
 {% block title %}Все задачи{% endblock title %}
@@ -25,7 +25,7 @@
           <tbody>
             <tr>
               <th class="table_1" scope="row">{{ forloop.counter }}</th>
-              <td><a class="table_2" href="{% url "task-view" task.id %}"
+              <td><a class="table_2" href="{% url "webapp:task-view" task.id %}"
               >{{ task.summary }}</a></td>
             </tr>
           </tbody>

@@ -8,14 +8,17 @@
 
     <h2>Задачи</h2>
     {% for task in project.tasks.all %}
-        <p><a href="{% url "task-view" task.pk %}">{{ task.summary }}</a></p>
+        <p><a href="{% url "webapp:task-view" task.pk %}"
+        >{{ task.summary }}</a></p>
     {% empty %}
         <p>Нет задач :(</p>
     {% endfor %}
 
-    <p><a href="{% url "task-create" project.pk %}">Добавить задачу</a></p>
-    <p><a href="{% url "project-delete" project.pk %}">Удалить проект</a></p>
-    <p><a href="{% url "project-update" project.pk %}">Редактировать
+    <p><a href="{% url "webapp:task-create" project.pk %}">Добавить
+        задачу</a></p>
+    <p><a href="{% url "webapp:project-delete" project.pk %}">Удалить
+        проект</a></p>
+    <p><a href="{% url "webapp:project-update" project.pk %}">Редактировать
         проект</a></p>
 
 {% endblock content %}

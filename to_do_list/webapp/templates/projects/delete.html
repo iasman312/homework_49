@@ -5,10 +5,11 @@
     {{ project.title }}?{% endblock page_header %}
 
 {% block content%}
-    <form action="{% url "project-delete" project.id %}", method="POST">
+    <form action="{% url "webapp:project-delete" project.id %}", method="POST">
         {% csrf_token %}
         <input type="submit" value="Да, я хочу удалить проект">
-        <a href="{% url "project-view" project.id %}">Отмена. Код красный. КОД
+        <a href="{% url "webapp:project-view" project.id %}">Отмена. Код
+            красный. КОД
             КРАСНЫЙ!!</a>
     </form>
 {% endblock content %}

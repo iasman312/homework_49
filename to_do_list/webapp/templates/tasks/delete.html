@@ -5,10 +5,10 @@
     {{ task.summary }}?{% endblock page_header %}
 
 {% block content%}
-    <form action="{% url "task-delete" task.id %}", method="POST">
+    <form action="{% url "webapp:task-delete" task.id %}", method="POST">
         {% csrf_token %}
         <input type="submit" value="Да, я хочу удалить задачу">
-        <a href="{% url "task-view" task.id %}">Отмена. Код красный. КОД
+        <a href="{% url "webapp:task-view" task.id %}">Отмена. Код красный. КОД
             КРАСНЫЙ!!</a>
     </form>
 {% endblock content %}
