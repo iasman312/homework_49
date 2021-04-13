@@ -5,7 +5,7 @@
 
 {% block content %}
     {% csrf_token %}
-    <form action="{% url "accounts:create"%}" method="POST">
+    <form action="" method="POST">
         <h1>Регистрация</h1>
         {% include 'partial/form.html' with form_method='post' button_text="Зарегистрироваться" %}
     </form>
