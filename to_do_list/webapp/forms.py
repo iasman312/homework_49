@@ -7,7 +7,7 @@ from webapp.models import Task, Type, Project
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['author', 'title', 'description', 'start_date', 'finish_date']
+        fields = ['title', 'description', 'start_date', 'finish_date']
 
 
 class TaskForm(forms.ModelForm):
@@ -17,7 +17,7 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['author', 'summary', 'description', 'statuses', 'types']
+        fields = ['summary', 'description', 'statuses', 'types']
 
 
 class SimpleSearchForm(forms.Form):
