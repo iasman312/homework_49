@@ -7,7 +7,8 @@
     "finish_date": "2021-04-29",
     "title": "Проект 1",
     "description": "Отличный проект",
-    "is_deleted": false
+    "is_deleted": false,
+    "user": []
   }
 },
 {
@@ -18,7 +19,11 @@
     "finish_date": "2021-05-20",
     "title": "Проект 2",
     "description": "Нормальный проект",
-    "is_deleted": false
+    "is_deleted": false,
+    "user": [
+      5,
+      6
+    ]
   }
 },
 {
@@ -31,6 +36,21 @@
     "project": 2,
     "created_at": "2021-03-29T08:49:02.196Z",
     "updated_at": "2021-04-01T09:42:28.045Z",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 6,
+  "fields": {
+    "summary": "Играть",
+    "description": "фафафаафффффффаффффффыасфааааа",
+    "statuses": 1,
+    "project": 2,
+    "created_at": "2021-04-15T11:21:25.933Z",
+    "updated_at": "2021-04-15T11:21:25.933Z",
     "types": [
       1
     ]
