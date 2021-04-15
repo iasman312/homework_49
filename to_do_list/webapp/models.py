@@ -1,8 +1,11 @@
 from django.db import models
 from webapp.validators import MinLengthValidator, prohibited_word
+from django.contrib.auth import get_user_model
 
 
 class Project(models.Model):
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1, related_name='projects',
+                               verbose_name='Автор')
     start_date = models.DateField(null=False, blank=False,
                                   verbose_name='Дата начала')
     finish_date = models.DateField(null=True, blank=True,
@@ -20,6 +23,8 @@ class Project(models.Model):
 
 
 class Task(models.Model):
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1, related_name='tasks',
+                               verbose_name='Автор')
     summary = models.CharField(max_length=120, null=False, blank=False,
                                verbose_name='Краткое описание',
                                validators=[MinLengthValidator(5),
