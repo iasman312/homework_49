@@ -20,6 +20,13 @@ class TaskForm(forms.ModelForm):
         fields = ['summary', 'description', 'statuses', 'types']
 
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['user',]
+
+
 class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label="Найти")
+
 

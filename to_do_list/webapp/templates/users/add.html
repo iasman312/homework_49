@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block page_header %}Добавить пользователей{% endblock page_header %}
+
+{% block content %}
+    <form action="" method="post">
+        {% include "partial/form.html" with button_text="Добавить пользователей" %}
+    </form>
+{% endblock content %}

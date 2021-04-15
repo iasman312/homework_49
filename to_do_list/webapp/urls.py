@@ -9,7 +9,8 @@ from webapp.views import (
     TaskUpdateView,
     TaskDeleteView,
     ProjectUpdateView,
-    ProjectDeleteView
+    ProjectDeleteView,
+    ProjectUserAdd
 )
 
 app_name = 'webapp'
@@ -27,4 +28,5 @@ urlpatterns = [
          name='task-update'),
     path('tasks/<int:pk>/delete/', TaskDeleteView.as_view(),
          name='task-delete'),
+    path('<int:pk>user/add/', ProjectUserAdd.as_view(), name='project-user-add')
 ]

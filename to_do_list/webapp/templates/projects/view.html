@@ -8,17 +8,27 @@
 
     <h2>Задачи</h2>
     {% for task in project.tasks.all %}
-        <p><a href="{% url "webapp:task-view" task.pk %}"
-        >{{ task.summary }}</a></p>
+        <ul>
+            <li><a href="{% url "webapp:task-view" task.pk %}"
+        >{{ task.summary }}</a></li>
+        </ul>
     {% empty %}
         <p>Нет задач :(</p>
     {% endfor %}
-
+    <h2>Пользователи</h2>
+    {% for user in project.user.all %}
+        <ul>
+            <li>{{ user.username }}</li>
+        </ul>
+    {% endfor %}
     <p><a href="{% url "webapp:task-create" project.pk %}">Добавить
         задачу</a></p>
     <p><a href="{% url "webapp:project-delete" project.pk %}">Удалить
         проект</a></p>
     <p><a href="{% url "webapp:project-update" project.pk %}">Редактировать
         проект</a></p>
+    <p><a href="{% url "webapp:project-user-add" project.pk %}">Добавить пользователя
+    </a></p>
+
 
 {% endblock content %}

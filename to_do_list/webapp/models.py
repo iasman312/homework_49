@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 class Project(models.Model):
     user = models.ManyToManyField(get_user_model(), related_name='projects',
-                                    verbose_name='Пользователь', db_table='projects_users')
+                                    verbose_name='Пользователь', db_table='projects_users', blank=True, null=True)
     start_date = models.DateField(null=False, blank=False,
                                   verbose_name='Дата начала')
     finish_date = models.DateField(null=True, blank=True,
