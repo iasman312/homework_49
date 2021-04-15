@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, FormView, \
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.utils.http import urlencode
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from webapp.forms import TaskForm, SimpleSearchForm
 from webapp.models import Task, Project
@@ -55,14 +55,15 @@ class TaskView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TaskCreateView(LoginRequiredMixin, CreateView):
+class TaskCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'tasks/create.html'
     form_class = TaskForm
     model = Task
+    permission_required = 'webapp.add_task'
 
     def get_success_url(self):
         return reverse(
-            'project-view',
+            'webapp:project-view',
             kwargs={'pk': self.kwargs.get('pk')}
         )
 
@@ -71,21 +72,37 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         form.instance.project = project
         return super().form_valid(form)
 
+    def has_permission(self):
+        project = Project.objects.get(pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
-class TaskUpdateView(LoginRequiredMixin, UpdateView):
+
+class TaskUpdateView(PermissionRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks/update.html'
     form_class = TaskForm
     context_object_name = 'task'
+    permission_required = 'webapp.change_task'
 
     def get_success_url(self):
-        return reverse('project-view', kwargs={'pk': self.object.project.pk})
+        return reverse('webapp:project-view', kwargs={'pk': self.object.project.pk})
+
+    def has_permission(self):
+        task = self.get_object()
+        project = Project.objects.get(pk=task.project.pk)
+        return super().has_permission() and self.request.user in project.user.all()
 
 
-class TaskDeleteView(LoginRequiredMixin, DeleteView):
+class TaskDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'tasks/delete.html'
     model = Task
     context_object_name = 'task'
+    permission_required = 'webapp.delete_task'
 
     def get_success_url(self):
-        return reverse('project-view', kwargs={'pk': self.object.project.pk})
+        return reverse('webapp:project-view', kwargs={'pk': self.object.project.pk})
+
+    def has_permission(self):
+        task = self.get_object()
+        project = Project.objects.get(pk=task.project.pk)
+        return super().has_permission() and self.request.user in project.user.all()

@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 
 from django.forms import widgets
 from webapp.models import Task, Type, Project
@@ -21,6 +22,10 @@ class TaskForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
+    user = forms.ModelMultipleChoiceField(required=False, label='Пользователи',
+                                           queryset=User.objects.all(),
+                                           widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Project
         fields = ['user',]

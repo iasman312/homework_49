@@ -21,14 +21,21 @@
             <li>{{ user.username }}</li>
         </ul>
     {% endfor %}
+    {% if perms.webapp.add_task and user in project.user.all %}
     <p><a href="{% url "webapp:task-create" project.pk %}">Добавить
         задачу</a></p>
+    {% endif %}
+    {% if perms.webapp.delete_project %}
     <p><a href="{% url "webapp:project-delete" project.pk %}">Удалить
         проект</a></p>
+    {% endif %}
+    {% if perms.webapp.change_project %}
     <p><a href="{% url "webapp:project-update" project.pk %}">Редактировать
         проект</a></p>
+    {% endif %}
+    {% if perms.webapp.add_or_delete_user and user in project.user.all %}
     <p><a href="{% url "webapp:project-user-add" project.pk %}">Добавить пользователя
     </a></p>
-
+    {% endif %}
 
 {% endblock content %}

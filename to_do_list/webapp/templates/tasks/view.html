@@ -16,9 +16,12 @@
                 {% endfor %}
             </h6>
             <p class="card-text"><strong>Полное описание: </strong>{{ task.description }}</p>
-            <a href="{% url "webapp:task-delete" task.pk %}">Удалить задачу</a>
-            <a href="{% url "webapp:task-update" task.pk %}">Редактировать
-                задачу</a>
+            {% if perms.webapp.delete_task and user in task.project.user.all %}
+                <a href="{% url "webapp:task-delete" task.pk %}">Удалить задачу</a>
+            {% endif %}
+            {% if perms.webapp.change_task and user in task.project.user.all %}
+                <a href="{% url "webapp:task-update" task.pk %}">Редактировать задачу</a>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}

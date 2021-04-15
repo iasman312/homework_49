@@ -20,6 +20,9 @@ class Project(models.Model):
         db_table = 'projects'
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
+        permissions = [
+            ('add_or_delete_user', 'Редактировать пользователей')
+        ]
 
 
 class Task(models.Model):

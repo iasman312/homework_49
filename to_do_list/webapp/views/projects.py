@@ -5,7 +5,7 @@ from django.http import Http404
 
 from webapp.forms import ProjectForm
 from webapp.models import Project
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class IndexView(ListView):
@@ -33,30 +33,33 @@ class ProjectView(DetailView):
         return self.render_to_response(context)
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'projects/create.html'
     model = Project
     form_class = ProjectForm
+    permission_required = 'webapp.add_project'
 
     def get_success_url(self):
-        return reverse('project-view', kwargs={'pk': self.object.pk})
+        return reverse('webapp:project-view', kwargs={'pk': self.object.pk})
 
 
-class ProjectUpdateView(LoginRequiredMixin, UpdateView):
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/update.html'
     form_class = ProjectForm
     context_object_name = 'project'
+    permission_required = 'webapp.change_project'
 
     def get_success_url(self):
-        return reverse('project-view', kwargs={'pk': self.object.pk})
+        return reverse('webapp:project-view', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(LoginRequiredMixin, DeleteView):
+class ProjectDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'projects/delete.html'
     model = Project
     context_object_name = 'project'
-    success_url = reverse_lazy('project-list')
+    success_url = reverse_lazy('webapp:project-view')
+    permission_required = 'webapp.delete_project'
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

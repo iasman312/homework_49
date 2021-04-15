@@ -17,8 +17,10 @@
             </p>
             </div>
         {% endfor %}
+        {% if perms.webapp.add_project %}
         <a class="btn btn-primary" href="{% url "webapp:project-create" %}"
            role="button">Создать проект</a>
+        {% endif %}
     </div>
     {% include 'partial/pagination.html' %}
 {% endblock content %}
