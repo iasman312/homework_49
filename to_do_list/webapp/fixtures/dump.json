@@ -97,5 +97,45 @@
   "fields": {
     "name": "Enhancement"
   }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "avatar": "user_pics/pavel_durov.jpg",
+    "github": "https://github.com/pavel",
+    "about": "I'm a good developer"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 6,
+    "avatar": "user_pics/elon-musk.jpg",
+    "github": "https://github.com/elon",
+    "about": "I'm a good tech lead"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "avatar": "user_pics/STEVE-JOBS1.jpg",
+    "github": "https://github.com/steve",
+    "about": "I'm a good manager"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "avatar": "",
+    "github": null,
+    "about": null
+  }
 }
 ]

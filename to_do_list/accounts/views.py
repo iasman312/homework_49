@@ -2,6 +2,7 @@ from django.views.generic import DetailView, ListView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator
+from accounts.models import Profile
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -13,6 +14,7 @@ def register_view(request, *args, **kwargs):
         form = MyUserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user)
             login(request, user)
             return redirect('webapp:project-list')
     else:
