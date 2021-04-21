@@ -5,6 +5,13 @@
 {% block page_header %}To-Do List{% endblock page_header %}
 
 {% block content %}
+    {% include 'partial/project_list.html' %}
+
+
+
+
+
+
     <div class="project-cards">
         {% for project in projects %}
             <div class="project-card">

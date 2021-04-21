@@ -1,0 +1,30 @@
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+{% endif %}
+{% for project in projects %}
+    <div class="box">
+        <h3><a href="{% url "webapp:project-view" project.pk %}">{{ project.title }}</a></h3>
+        <p>
+            <label for="selected_projects-{{ project.pk }}">Select:</label>
+            <input type="checkbox" name="selected_projects"
+                   id="selected_projects-{{ project.pk }}" value="{{ project.pk }}">
+        </p>
+        <p>
+            {% for user in project.user.all %}
+                <a href="{% url 'accounts:detail' user.pk %}">{{ project.user.username }}</a>
+            {% endfor %}
+        </p>
+        <p>Started at: {{ project.start_date|date:"d.m.Y" }}</p>
+        {% if perms.webapp.change_project or user in project.user.all %}
+            <p><a href="{% url 'webapp:project-update' project.pk %}">Update</a></p>
+        {% endif %}
+        {% if perms.webapp.delete_project or user in project.user.all %}
+            <p><a href="{% url 'webapp:project-delete' project.pk %}">Delete</a></p>
+        {% endif %}
+    </div>
+{% empty %}
+    <h2 class="text-center">Нет проектов</h2>
+{% endfor %}
+{% if is_paginated %}
+     {% include 'partial/pagination.html' %}
+{% endif %}
