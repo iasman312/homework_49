@@ -6,28 +6,8 @@
 
 {% block content %}
     {% include 'partial/project_list.html' %}
-
-
-
-
-
-
-    <div class="project-cards">
-        {% for project in projects %}
-            <div class="project-card">
-            <p>
-                <span class="project_num"
-            >{{ forloop.counter }}</span>
-            <a class="project_title" href="
-{% url "webapp:project-view" project.id %}"
-            >{{ project.title }}</a><br>
-            </p>
-            </div>
-        {% endfor %}
-        {% if perms.webapp.add_project %}
+    {% if perms.webapp.add_project %}
         <a class="btn btn-primary" href="{% url "webapp:project-create" %}"
            role="button">Создать проект</a>
-        {% endif %}
-    </div>
-    {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock content %}

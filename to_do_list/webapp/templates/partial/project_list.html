@@ -11,7 +11,7 @@
         </p>
         <p>
             {% for user in project.user.all %}
-                <a href="{% url 'accounts:detail' user.pk %}">{{ project.user.username }}</a>
+                <p><a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a></p>
             {% endfor %}
         </p>
         <p>Started at: {{ project.start_date|date:"d.m.Y" }}</p>

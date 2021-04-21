@@ -21,7 +21,8 @@ class Project(models.Model):
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
         permissions = [
-            ('add_or_delete_user', 'Редактировать пользователей')
+            ('add_or_delete_user', 'Редактировать пользователей'),
+            ('view_users', 'Просмотр списка пользователей')
         ]
 
 

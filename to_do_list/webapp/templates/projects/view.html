@@ -18,7 +18,7 @@
     <h2>Пользователи</h2>
     {% for user in project.user.all %}
         <ul>
-            <li>{{ user.username }}</li>
+            <p><a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a></p>
         </ul>
     {% endfor %}
     {% if perms.webapp.add_task and user in project.user.all %}
